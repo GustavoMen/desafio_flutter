@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './components/ui/app_bar_custom.dart';
 import 'components/screens/main_page.dart';
 
-void main() => runApp(DesafioFlutter());
+void main() => runApp(const DesafioFlutter());
 
 class DesafioFlutter extends StatelessWidget {
   const DesafioFlutter({super.key});

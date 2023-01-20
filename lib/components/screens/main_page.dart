@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:desafio_flutter/components/ui/product_card.dart';
+import '../ui/grid_products.dart';
 import 'package:flutter/material.dart';
 import '../ui/main_text.dart';
 import '../ui/select_menu.dart';
@@ -17,9 +16,9 @@ class _MainPageState extends State<MainPage> {
   final List<Map<String, dynamic>> _productList = [];
   bool _isLoaded = false;
 
-  Future<void> getProducts() async {
+  Future<void> _getProducts() async {
     final fetch = await http.get(Uri.parse(
-        'https://dummyjson.com/products?limit=2&select=title,price,description,brand,category,thumbnail'));
+        'https://dummyjson.com/products?limit=4&select=title,price,description,brand,category,thumbnail'));
     final responseJson = jsonDecode(fetch.body);
     final response = responseJson['products'];
     response.forEach((productData) {
@@ -32,34 +31,31 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
-    getProducts();
+    _getProducts();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const MainText(),
-        const SelectMenu(),
-        Visibility(
-            replacement: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(top: 40),
-                  child: CircularProgressIndicator(),
-                ),
-              ],
-            ),
-            visible: _isLoaded,
-            child: Column(
-              children: [
-                ..._productList.map((e) => ProductCard(productDetails: e))
-              ],
-            ))
-      ]),
-    );
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const MainText(),
+      const SelectMenu(),
+      Visibility(
+          replacement: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Padding(
+                padding: EdgeInsets.only(top: 40),
+                child: CircularProgressIndicator(),
+              ),
+            ],
+          ),
+          visible: _isLoaded,
+          child: Flexible(
+              child: GridProducts(
+            productList: _productList,
+          )))
+    ]);
   }
 }

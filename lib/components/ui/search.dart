@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 class Search extends StatelessWidget {
   const Search({super.key});
 
-  void onClick() {
-    print('press');
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constrains) {
@@ -21,7 +17,7 @@ class Search extends StatelessWidget {
           ),
           Container(
             height: 40,
-            width: 268,
+            width: constrains.maxWidth * 0.85,
             margin: const EdgeInsets.only(top: 15),
             padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
             decoration: BoxDecoration(
@@ -30,7 +26,7 @@ class Search extends StatelessWidget {
                 color: Colors.grey,
               ),
               borderRadius: const BorderRadius.all(
-                Radius.circular(10),
+                Radius.circular(20),
               ),
             ),
             child: const TextField(

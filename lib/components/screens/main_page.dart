@@ -18,7 +18,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> _getProducts() async {
     final fetch = await http.get(Uri.parse(
-        'https://dummyjson.com/products?limit=4&select=title,price,description,brand,category,thumbnail'));
+        'https://dummyjson.com/products?select=title,price,description,brand,category,thumbnail'));
     final responseJson = jsonDecode(fetch.body);
     final response = responseJson['products'];
     response.forEach((productData) {

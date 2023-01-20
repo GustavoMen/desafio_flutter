@@ -50,7 +50,9 @@ class ProductCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          productDetails['title'],
+                          productDetails['title'].length > 19
+                              ? productDetails['title'].substring(0, 19)
+                              : productDetails['title'],
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16,

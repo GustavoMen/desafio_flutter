@@ -12,7 +12,7 @@ class DynamicPage extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            padding: EdgeInsets.only(left: 30),
+            padding: const EdgeInsets.only(left: 30),
             icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -39,6 +39,7 @@ class DynamicPage extends StatelessWidget {
                   child: Image(
                     fit: BoxFit.fill,
                     width: constrains.maxWidth * 0.9,
+                    height: constrains.maxHeight * 0.35,
                     image: NetworkImage(productDetails['thumbnail']),
                   )),
             ),
@@ -50,6 +51,7 @@ class DynamicPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           productDetails['title'],
